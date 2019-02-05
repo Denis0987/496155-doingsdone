@@ -41,8 +41,19 @@ $tasks = [
      "perf" => "Нет"
    ]
 ];
+
+
+
+function project_tasks ($list, $tasks_function) {
+    $count = 0;
+    foreach ($tasks_function as $key => $value) {
+        if ( $list ===  $value['type']) {
+            $count = $count + 1;
+        }
+    }
+    return $count;
+}
 ?>
-<!--perf сокращено от perform-->
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -73,7 +84,7 @@ $tasks = [
                     </div>
 
                     <div class="user-menu__data">
-                        <p>Константин</p>
+                        <p>Денис</p>
 
                         <a href="#">Выйти</a>
                     </div>
@@ -90,7 +101,7 @@ $tasks = [
                       <?php foreach ($types as $key => $value): ?>
                         <li class="main-navigation__list-item">
                             <a class="main-navigation__list-item-link" href="#"><?=$value;?></a>
-                            <span class="main-navigation__list-item-count">0</span>
+                            <span class="main-navigation__list-item-count"><?=project_tasks($value, $tasks) ?></span>
                         </li>
                       <?php endforeach; ?>
                     </ul>
