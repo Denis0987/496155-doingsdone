@@ -25,6 +25,18 @@ function count_item($task_list, $project) {
 }
 //функция фильтрации задач
 function esc($str) {
-    $text = strip_tags($str);
-    return $text;
+	$text = htmlspecialchars($str);
+	//$text = strip_tags($str);
+	return $text;
+}
+
+function project_tasks($tasks, $project_name)
+{
+  $count = 0;
+  foreach ($tasks as $value) {
+    if ($value["type"] === $project_name) {
+      $count += 1;
+    }
+  }
+  return $count;
 }
