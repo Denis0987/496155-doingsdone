@@ -47,16 +47,6 @@ $tasks = [
 
 
 
-function project_tasks($tasks, $project_name)
-{
-  $count = 0;
-  foreach ($tasks as $value) {
-    if ($value["type"] === $project_name) {
-      $count += 1;
-    }
-  }
-  return $count;
-}
 $index_content = include_template('index.php',
     ['tasks' => $tasks,
     'show_complete_tasks' =>  $show_complete_tasks]);
