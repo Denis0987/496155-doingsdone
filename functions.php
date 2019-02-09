@@ -40,3 +40,18 @@ function project_tasks($tasks, $project_name)
   }
   return $count;
 }
+
+function check_time ($date) {
+    if ($date === "Нет") {
+        return false;
+    };
+    $task_date = strtotime($date);
+    $now = strtotime("now");
+    $date_diff = $task_date - $now;
+    $hour_diff = floor($date_diff/3600);
+    if ($hour_diff > 24) {
+        return false;
+    } else {
+        return true;
+    }
+}
