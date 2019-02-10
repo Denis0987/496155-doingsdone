@@ -1,4 +1,4 @@
-                
+              
             
         <main>
             <h2 class="content__main-heading">Список задач</h2>
@@ -25,9 +25,11 @@
                 </div>
 
                 <table class="tasks">
+                    <?=($value["date"] && (strtotime("+24 hours now") > strtotime($value["date"])) ? "task--important" : ""); ?>
                   <?php if ($show_complete_tasks === 1): ?>
                     <?php foreach ($tasks as $key => $value): ?>
-                      <tr class="tasks__item task <?php if ($value["perf"] === "Да"):?><?php endif ?><?php if (check_time($value["date"])): ?>task--important task--completed<?php endif; ?>">
+                    
+                      <tr class="tasks__item task task--important task--completed">
                           <td class="task__select">
                               <label class="checkbox task__checkbox">
                                   <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
