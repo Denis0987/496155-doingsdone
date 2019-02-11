@@ -1,6 +1,5 @@
 <?php
 require_once('functions.php');
-
 // показывать или нет выполненные задачи
 $show_complete_tasks = rand(0, 1);
 $types = ["Входящие", "Учеба", "Работа", "Домашние дела", "Авто"];
@@ -43,10 +42,6 @@ $tasks = [
      "perf" => "Нет"
    ]
 ];
-
-
-
-
 $index_content = include_template('index.php',
     ['tasks' => $tasks,
     'show_complete_tasks' =>  $show_complete_tasks]);
