@@ -4,7 +4,7 @@ CREATE DATABASE doingsdone
 
 USE doingsdone;
 
-CREATE TABLE User (
+create table User (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	name_user VARCHAR(128) NOT NULL,
 	email VARCHAR(128) NOT NULL ,
@@ -12,13 +12,13 @@ CREATE TABLE User (
 	reg_date DATETIME NOT NULL DEFAULT NOW()
 );
 
-CREATE TABLE Project (
+create table Project (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	name_project VARCHAR(128),
 	user_id INT NOT NULL
 );
 
-CREATE TABLE Task (
+create table Task (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	name_task CHAR(128) NOT NULL,
 	creation_at DATETIME DEFAULT NOW(),
