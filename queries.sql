@@ -32,9 +32,10 @@ SELECT name_task, file_task, done_at, deadline, status, project_id
   FROM Task  where project_id = 1;
 
 -- пометить задачу как выполненную
-UPDATE Task SET status = true
+UPDATE Task SET status = true, done_at = NOW()
 WHERE id = 3;
 
 -- обновить название задачи по её идентификатору
 UPDATE Task SET name_task = 'Купить корм для зайца'
 WHERE id = 5;
+

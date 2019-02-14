@@ -42,6 +42,34 @@ $tasks = [
      "perf" => "Нет"
    ]
 ];
+$connect = mysqli_connect("localhost", "root", "", "doingsdone");
+if ($connect === false) {
+    $error = mysqli_error($connect);
+    print("Ошибка MySQL:" .$error);
+    exit();
+} else {
+    mysqli_set_charset($connect, "utf8");
+    //SQL-запрос для получения списка проектов у текущего пользователя
+    $sql = "SELECT id, name_project FROM Project  WHERE user_id = " . 1 ;
+    $result = mysqli_query($connect, $sql);
+    if (!$result) {
+        $error = mysqli_error($connect);
+        print("Ошибка MySQL:" .$error);
+        exit();
+    }
+    $types = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    //SQL-запрос для получения списка из всех задач у текущего пользователя
+    $sql =  "SELECT name_task, file_task, done_at, deadline, status, project_id
+            FROM Task  where project_id =" . 1;
+    $result = mysqli_query($connect, $sql);
+    if (!$result) {
+        $error = mysqli_error($connect);
+        print("Ошибка MySQL:" .$error);
+        exit();
+    }
+    $tasks = mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
+
 $index_content = include_template('index.php',
     ['tasks' => $tasks,
     'show_complete_tasks' =>  $show_complete_tasks]);
