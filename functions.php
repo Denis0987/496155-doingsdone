@@ -39,3 +39,18 @@ function project_tasks($tasks, $project_name)
   }
   return $count;
 }
+
+function fetch_data ($connect, $sql) {
+    if(!$connect) {
+        print('Ошибка подключения: ' . mysqli_connect_error());
+        exit();
+    }
+    $result = mysqli_query($connect, $sql);
+     if(!$result) {
+        $error = mysqli_error($connect);
+        print("Ошибка MySQL: " . $error);
+        exit();
+    }
+     $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    return $data;
+}
