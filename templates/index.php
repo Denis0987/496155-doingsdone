@@ -36,7 +36,7 @@
                           </td>
 
                           <td class="task__file">
-                              <a class="download-link" href="#">Home.psd</a>
+                              <a class="<?=($item['file'] ? "download-link" : "");?>" href="<?=$item['file'];?>" target="_blank"><?=esc($item['file']) ; ?></a>
                           </td>
 
                           <td class="task__date"><?=$value["date"];?></td>

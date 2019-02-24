@@ -10,6 +10,19 @@ $error = 'Невозможно подключиться к базе данных
 $user_id = 2;
 $safe_id = intval($user_id);
 
+$connect = mysqli_connect("localhost", "root", "", "doingsdone");
+mysqli_set_charset($connect, "utf8");
+
+
+$sql = "SELECT * FROM users WHERE id = " . $safe_id;
+$user = fetch_data($connect, $sql);
+
+$sql = "SELECT * FROM projects WHERE user_id = " . $safe_id;
+$projects = fetch_data($connect, $sql);
+
+$sql = "SELECT * FROM tasks WHERE user_id = " . $safe_id;
+$tasks = fetch_data($connect, $sql);
+
 $sql_projects = "SELECT * FROM projects WHERE user_id = ?";
 
 $tasks = [];
@@ -38,17 +51,6 @@ if ($error) {
     ]);
 }
 	
-$connect = mysqli_connect("localhost", "root", "", "doingsdone");
-mysqli_set_charset($connect, "utf8");
-
-$sql = "SELECT * FROM users WHERE id = " . $safe_id;
-$user = fetch_data($connect, $sql);
-
-$sql = "SELECT * FROM projects WHERE user_id = " . $safe_id;
-$projects = fetch_data($connect, $sql);
-
-$sql = "SELECT * FROM tasks WHERE user_id = " . $safe_id;
-$tasks = fetch_data($connect, $sql);
 
 
 

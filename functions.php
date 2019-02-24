@@ -23,6 +23,22 @@ function count_item($task_list, $project) {
     }
     return $i;
 }
+
+function fetch_data ($connect, $sql) {
+    if(!$connect) {
+        print('Ошибка подключения: ' . mysqli_connect_error());
+        exit();
+    }
+    $result = mysqli_query($connect, $sql);
+     if(!$result) {
+        $error = mysqli_error($connect);
+        print("Ошибка MySQL: " . $error);
+        exit();
+    }
+     $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    return $data;
+}
+
 //функция фильтрации задач
 function esc($str) {
 	$text = htmlspecialchars($str);
@@ -40,17 +56,48 @@ function project_tasks($tasks, $project_name)
   return $count;
 }
 
-function fetch_data ($connect, $sql) {
-    if(!$connect) {
-        print('Ошибка подключения: ' . mysqli_connect_error());
-        exit();
+
+function db_get_prepare_stmt($link, $sql, $data = []) {
+    $stmt = mysqli_prepare($link, $sql);
+     if ($data) {
+        $types = '';
+        $stmt_data = [];
+         foreach ($data as $value) {
+            $type = null;
+             if (is_int($value)) {
+                $type = 'i';
+            }
+            else if (is_string($value)) {
+                $type = 's';
+            }
+            else if (is_double($value)) {
+                $type = 'd';
+            }
+             if ($type) {
+                $types .= $type;
+                $stmt_data[] = $value;
+            }
+        }
+         $values = array_merge([$stmt, $types], $stmt_data);
+         $func = 'mysqli_stmt_bind_param';
+        $func($values);
     }
-    $result = mysqli_query($connect, $sql);
-     if(!$result) {
-        $error = mysqli_error($connect);
-        print("Ошибка MySQL: " . $error);
-        exit();
+     return $stmt;
+}
+
+function correct_format_day ($date) {
+    $array = explode(".", $date);
+    if (count($array) == 3) {
+        $day = $array[0];
+        $month = $array[1];
+        $year = $array[2];
+        if (strlen($day) == 2 && strlen($month) == 2 && strlen($year) == 4) {
+            $correct = checkdate($month, $day, $year);
+        }
+    } else {
+        $correct = 0;
     }
-     $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    return $data;
+    return $correct;
+
+
 }
