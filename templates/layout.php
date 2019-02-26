@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="user-menu__data">
-                        <p>Денис</p>
+                        <p><?=$user_name?></p>
 
                         <a href="#">Выйти</a>
                     </div>
@@ -42,10 +42,10 @@
 
                 <nav class="main-navigation">
                     <ul class="main-navigation__list">
-                    <?php foreach($tasks as $task):?>
+                    <?php foreach($projects as $val): ?>
                         <li class="main-navigation__list-item">
-                            <a class="main-navigation__list-item-link" href="#"><?=htmlspecialchars($task['id']);?></a>
-                            <span class="main-navigation__list-item-count"><?= count_tasks($tasks, $user['id']); ?></span>
+                            <a class="main-navigation__list-item-link" href="?project=<?=$val['id'];?>"><?=htmlspecialchars($val['title_project']);?></a>
+                            <span class="main-navigation__list-item-count"><?= count_tasks($connect, $val['id']); ?></span>
                         </li>
                     <?php endforeach; ?>
                     </ul>
@@ -72,7 +72,7 @@
         <a class="main-footer__button button button--plus" href="add.php">Добавить задачу</a>
 
         <div class="main-footer__social social">
-            <span class="visually-hidden">Мы в соцсетях:</span>  
+            <span class="visually-hidden">Мы в соцсетях:</span>
             <a class="social__link social__link--facebook" href="#">
                 <span class="visually-hidden">Facebook</span>
                 <svg width="27" height="27" viewBox="0 0 27 27" xmlns="http://www.w3.org/2000/svg">
