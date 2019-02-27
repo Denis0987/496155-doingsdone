@@ -20,7 +20,7 @@
             </a>
 
             <div class="main-header__side">
-                <a class="main-header__side-item button button--plus open-modal" href="pages/form-task.html">Добавить задачу</a>
+                <a class="main-header__side-item button button--plus open-modal" href="add.php">Добавить задачу</a>
 
                 <div class="main-header__side-item user-menu">
                     <div class="user-menu__image">
@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="user-menu__data">
-                        <p>Денис</p>
+                        <p><?=$user_name?></p>
 
                         <a href="#">Выйти</a>
                     </div>
@@ -42,10 +42,10 @@
 
                 <nav class="main-navigation">
                     <ul class="main-navigation__list">
-                    <?php foreach($types as $type):?>
+                    <?php foreach($projects as $val): ?>
                         <li class="main-navigation__list-item">
-                            <a class="main-navigation__list-item-link" href="#"><?=htmlspecialchars($type);?></a>
-                            <span class="main-navigation__list-item-count"><?=project_tasks($tasks, $type);?></span>
+                            <a class="main-navigation__list-item-link" href="?project=<?=$val['id'];?>"><?=htmlspecialchars($val['title_project']);?></a>
+                            <span class="main-navigation__list-item-count"><?= count_tasks($connect, $val['id']); ?></span>
                         </li>
                     <?php endforeach; ?>
                     </ul>
@@ -69,7 +69,7 @@
             <p>Веб-приложение для удобного ведения списка дел.</p>
         </div>
 
-        <a class="main-footer__button button button--plus" href="pages/form-task.html">Добавить задачу</a>
+        <a class="main-footer__button button button--plus" href="add.php">Добавить задачу</a>
 
         <div class="main-footer__social social">
             <span class="visually-hidden">Мы в соцсетях:</span>
