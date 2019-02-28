@@ -2,7 +2,7 @@ USE doingsdone;
 
 INSERT INTO users (name, email, password, reg_date)
 VALUES
-('боб', 'chief@bob_soc.com', md5('qwerty'), NOW()), -- 1
+('Bob', 'chief@bob_soc.com', md5('qwerty'), NOW()), -- 1
 ('Юзер', 'User@userforum.com', md5('qwerty'), NOW()); -- 2
 
 INSERT INTO projects (title_project, user_id)

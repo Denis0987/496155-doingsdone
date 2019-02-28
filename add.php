@@ -1,6 +1,7 @@
 <?php
 require_once('init.php');
 require_once('functions.php');
+require_once('index.php');
 
 $user_id = 2;
 $safe_id = intval($user_id);
@@ -62,6 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($res) {
             header("Location: index.php");
+			 exit();
         }
         $page_content = include_template('add.php', [
             'projects' => $projects,
@@ -75,6 +77,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'user' => $user[0]
         ]);
     }
+	
+	
 }
  $layout_content = include_template('layout.php', [
     'title' => 'Дела в порядке',
