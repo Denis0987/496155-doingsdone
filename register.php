@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt = db_get_prepare_stmt($connect, $sql, [$form['name'], $form['email'], $password]);
         $res = mysqli_stmt_execute($stmt);
         if ($res) {
-            header("Location: /auth.php");
+            header("Location: auth.php");
             exit();
         }
         $page_content = include_template('register.php', []);
