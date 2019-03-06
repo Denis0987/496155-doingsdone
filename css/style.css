@@ -498,7 +498,7 @@ a:focus {
 
 .tasks {
   width: 100%;
-  
+
 
   border-collapse: collapse;
 }
@@ -511,6 +511,10 @@ a:focus {
   padding: 20px 0;
 
   border-bottom: 1px solid #d7dbe8;
+}
+
+.task--hide {
+  display: none;
 }
 
 .task__checkbox .checkbox__input + .checkbox__text {

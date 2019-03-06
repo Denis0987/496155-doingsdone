@@ -5,7 +5,7 @@
         <div class="form__row">
             <label class="form__label" for="name">Название <sup>*</sup></label>
 
-             <input class="form__input <?=(isset($errors['name']) ? "form__input--error" : "");?>" type="text" name="name" id="name" placeholder="Введите название" value="<?=(isset($_POST['name']) ? $_POST['name'] : ""); ?>" >
+             <input class="form__input <?=(isset($errors['name']) ? "form__input--error" : "");?>" type="text" name="name" id="name" placeholder="Введите название" value="<?=(isset($_POST['name']) ? $_POST['name'] : ??""); ?>" >
             <p class="form__message"><?=(isset($errors['name']) ? $errors['name'] : "");?></p>
         </div>
 
@@ -13,12 +13,12 @@
             <label class="form__label" for="project">Проект</label>
 
              <select class="form__input form__input--select <?=(isset($errors['project']) ? "form__input--error" : "");?>" name="project_id" id="project">
-                <option value="">Выберите проект</option>
+                <option value=""label="Выберите проект"></option>
                 <?php foreach ($projects as $value): ?>
                     <option value="<?=$value['id'];?>" <?= (isset($_POST['project_id']) && $value['id'] === $_POST['project_id']) ? "selected" : ''; ?>><?=$value['title_project'];?></option>
                 <?php endforeach; ?>
             </select>
-            <p class="form__message"><?=(isset($errors['project']) ? $errors['project'] : "");?></p>
+            <p class="form__message"><?=(isset($errors['project']) ? $errors['project'] :  ??"");?></p>
         </div>
 
          <div class="form__row">
