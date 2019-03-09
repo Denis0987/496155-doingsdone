@@ -2,11 +2,15 @@
     <h2 class="content__main-heading">Добавление задачи</h2>
 
      <form class="form"  action="add.php" method="post" enctype="multipart/form-data">
+
         <div class="form__row">
             <label class="form__label" for="name">Название <sup>*</sup></label>
 
-             <input class="form__input <?=(isset($errors['name']) ? "form__input--error" : "");?>" type="text" name="name" id="name" placeholder="Введите название" value="<?=(isset($_POST['name']) ? $_POST['name'] : ??""); ?>" >
-            <p class="form__message"><?=(isset($errors['name']) ? $errors['name'] : "");?></p>
+        <input class="form__input <?= $classname; ?>" type="text" name="name" id="name" value="<?= $value; ?>"
+               placeholder="Введите название">
+        <?php if (isset($errors['name'])): ?>
+            <p class="form__message"><?= $errors['name']; ?></p>
+        <?php endif; ?>
         </div>
 
          <div class="form__row">
@@ -18,7 +22,9 @@
                     <option value="<?=$value['id'];?>" <?= (isset($_POST['project_id']) && $value['id'] === $_POST['project_id']) ? "selected" : ''; ?>><?=$value['title_project'];?></option>
                 <?php endforeach; ?>
             </select>
-            <p class="form__message"><?=(isset($errors['project']) ? $errors['project'] :  ??"");?></p>
+                    <?php if (isset($errors['project'])): ?>
+            <p class="form__message"><?= $errors['project']; ?></p>
+        <?php endif; ?>
         </div>
 
          <div class="form__row">
