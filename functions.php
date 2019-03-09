@@ -61,6 +61,19 @@ function db_get_prepare_stmt($link, $sql, $data = []) {
     return $stmt;
 }
 
+
+ //функция добавляющая нового юзера в БД
+function put_user_in_database ($connect, $data) {
+    $sql_query = 'INSERT INTO users (e_mail, password, name) VALUES (?, ?, ?)';
+    $stmt = db_get_prepare_stmt($connect, $sql_query, $data);
+    $result = mysqli_stmt_execute($stmt);
+    if($result){
+        $result = mysqli_insert_id($connect);
+    }
+     return $result;
+};
+
+
 function correct_format_day ($date) {
     $array = explode(".", $date);
     if (count($array) == 3) {
