@@ -64,13 +64,18 @@ else {
         'tasks' => $tasks
     ]);
 }
-
-$layout_content = include_template('layout.php', [
-    'title' => 'Дела в порядке',
-    'connect' => $connect,
-    'projects' => $projects,
-    'content' => $index_content,
-    'user_name' => $user[0]['name']
-]);
+if (!empty($_SESSION)) {
+	$layout_content = include_template('layout.php', [
+		'title' => 'Дела в порядке',
+		'connect' => $connect,
+		'projects' => $projects,
+		'content' => $index_content,
+		'user_name' => $user[0]['name']
+	]);
+} else {
+     $layout_content = include_template('guest.php', [
+        'title' => 'Дела в порядке'
+    ]);
+}
 print ($layout_content);
 ?>

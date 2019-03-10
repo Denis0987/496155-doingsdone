@@ -1,87 +1,53 @@
 <!DOCTYPE html>
 <html lang="ru">
 
-<head>
+ <head>
     <meta charset="UTF-8">
-    <title><?= $title ?></title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/flatpickr.min.css">
+    <title><?=$title;?></title>
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body>
+ <body class="body-background">
 <h1 class="visually-hidden">Дела в порядке</h1>
 
-<div class="page-wrapper">
-    <div class="container container--with-sidebar">
+ <div class="page-wrapper">
+    <div class="container">
         <header class="main-header">
-            <a href="/">
-                <img src="img/logo.png" width="153" height="42" alt="Логотип Дела в порядке">
+            <a href="#">
+                <img src="../img/logo.png" width="153" height="42" alt="Логитип Дела в порядке">
             </a>
 
-            <div class="main-header__side">
-                <?php if (empty($user_name)) : ?>
-                    <a class="main-header__side-item button button--transparent" href="auth.php">Войти</a>
-                <?php else :?>
-                    <a class="main-header__side-item button button--plus open-modal" href="add.php">Добавить задачу</a>
-                    <div class="main-header__side-item user-menu">
-                        <div class="user-menu__image">
-                            <img src="img/user.png" width="40" height="40" alt="Пользователь">
-                        </div>
-                        <div class="user-menu__data">
-                            <p><?= $user_name; ?></p>
-                            <a href="logout.php">Выйти</a>
-                        </div>
-                    </div>
-                <?php endif; ?>
-
-
-                
+             <div class="main-header__side">
+                <a class="main-header__side-item button button--transparent" href="join.php">Войти</a>
             </div>
         </header>
 
-        <div class="content">
-            <section class="content__side">
-                <?php if (empty($user_name)) :?>
-                    <p class="content__side-info">Если у вас уже есть аккаунт, авторизуйтесь на сайте</p>
-                    <a class="button button--transparent content__side-button" href="auth.php">Войти</a>
-                <?php else :?>
-                    <h2 class="content__side-heading">Проекты</h2>
-                    <nav class="main-navigation">
-                        <?php foreach ($projects as $key => $value): ?>
-                            <ul class="main-navigation__list <?=(isset($_GET['project_id']) && $value['id'] == $_GET['project_id'] ? "main-navigation__list-item--active" : "");?>">
-                                <li class="main-navigation__list-item">
-                                    <a class="main-navigation__list-item-link" href="index.php?project_id=<?=$value['id'];?>"><?=$value['title_project']; ?> </a>
-                                    <span class="main-navigation__list-item-count"><?=count_item($tasks_count, $value['title_project']); ?></span>
-                                </li>
-                            </ul>
-                        <?php endforeach; ?>
-                    </nav>
-                    <a class="button button--transparent button--plus content__side-button"
-                       href="pages/form-project.html" target="project_add">Добавить проект</a>
-                <?php endif ;?>
+         <div class="content">
+            <section class="welcome">
+                <h2 class="welcome__heading">«Дела в порядке»</h2>
 
+                 <div class="welcome__text">
+                    <p>«Дела в порядке» — это веб приложение для удобного ведения списка дел. Сервис помогает пользователям не забывать о предстоящих важных событиях и задачах.</p>
+
+                     <p>После создания аккаунта, пользователь может начать вносить свои дела, деля их по проектам и указывая сроки.</p>
+                </div>
+
+                 <a class="welcome__button button" href="register.php">Зарегистрироваться</a>
             </section>
-
-            <?= $content ?>
-
         </div>
-    </div>
+    </div> 
 </div>
 
-<footer class="main-footer">
+ <footer class="main-footer">
     <div class="container">
         <div class="main-footer__copyright">
             <p>© 2019, «Дела в порядке»</p>
 
-            <p>Веб-приложение для удобного ведения списка дел.</p>
+             <p>Веб-приложение для удобного ведения списка дел.</p>
         </div>
 
-        <?php if (!empty($user_name)):?>
-            <a class="main-footer__button button button--plus" href="add.php">Добавить задачу</a>
-        <?php endif;?>
-
-        <div class="main-footer__social social">
+         <div class="main-footer__social social">
             <span class="visually-hidden">Мы в соцсетях:</span>
             <a class="social__link social__link--facebook" href="#">
                 <span class="visually-hidden">Facebook</span>
@@ -120,17 +86,15 @@
             </a>
         </div>
 
-        <div class="main-footer__developed-by">
+         <div class="main-footer__developed-by">
             <span class="visually-hidden">Разработано:</span>
 
-            <a href="https://htmlacademy.ru/intensive/php">
-                <img src="img/htmlacademy.svg" alt="HTML Academy" width="118" height="40">
+             <a href="https://htmlacademy.ru/intensive/php">
+                <img src="../img/htmlacademy.svg" alt="HTML Academy" width="118" height="40">
             </a>
         </div>
     </div>
 </footer>
 
-<script src="flatpickr.js"></script>
-<script src="script.js"></script>
-</body>
+ </body>
 </html>
