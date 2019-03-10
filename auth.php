@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors['email'] = 'Такой пользователь не найден';
     }
     if (count($errors)) {
-        $page_content = include_template('auth.php', [
+        $page_content = include_template('join.php', [
             'form' => $form,
             'errors' => $errors
         ]);
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 } else {
-    $page_content = include_template('auth.php', []);
+    $page_content = include_template('join.php', []);
 }
 $layout_content = include_template('layout.php', [
     'content' => $page_content,
