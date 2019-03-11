@@ -1,6 +1,6 @@
 <?php
 session_start();
-$user_id = $_SESSION['user']['id'];
+$user_id = intval($_SESSION['user']['id']);
 $error_sql = 'Невозможно подключиться к базе данных: ' . mysqli_connect_error();
 $connect = mysqli_connect("localhost", "root", "", "doingsdone");
 	if(!$connect) {

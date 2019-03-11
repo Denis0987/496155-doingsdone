@@ -9,13 +9,13 @@ $error = [];
 $user_id = 2;
 $safe_id = intval($user_id);
 
-$sql = "SELECT * FROM users WHERE id = '$safe_id'";
+$sql = "SELECT * FROM users WHERE id = '$user_id'";
 $user = fetch_data($connect, $sql);
 
-$sql_projects = "SELECT * FROM projects WHERE user_id = '$safe_id'";
+$sql_projects = "SELECT * FROM projects WHERE user_id = '$user_id'";
 $projects = fetch_data($connect, $sql_projects);
 
-$sql_tasks = "SELECT * FROM tasks WHERE user_id = '$safe_id'";
+$sql_tasks = "SELECT * FROM tasks WHERE user_id = '$user_id'";
 if(isset($_GET['task_date'])) {
     if($_GET['task_date'] == 'day') {
         $sql_tasks .= " AND DAY(deadline) = DAY(NOW())";
@@ -64,6 +64,23 @@ else {
         'tasks' => $tasks
     ]);
 }
+
+if(isset($_GET['task_id']) && isset($_GET['check'])) {
+    $task_id = intval($_GET['task_id']);
+    $sql = "SELECT * FROM tasks WHERE id = " . $task_id;
+    $task = fetch_data($connect, $sql);
+     if($task[0]['state']) {
+        $sql = "UPDATE tasks SET state = 0 WHERE id = " . $task_id;
+    } elseif (!$task[0]['state']) {
+        $sql = "UPDATE tasks SET state = 1 WHERE id = " . $task_id;
+    }
+     $res = mysqli_query($connect, $sql);
+     if ($res) {
+        header("Location: /index.php");
+        exit();
+    }
+}
+
 if (!empty($_SESSION)) {
 	$layout_content = include_template('layout.php', [
 		'title' => 'Дела в порядке',

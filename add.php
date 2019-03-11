@@ -7,10 +7,10 @@ require_once('functions.php');
 $user_id = 2;
 $safe_id = intval($user_id);
 
-$sql = "SELECT * FROM users WHERE id = " . $safe_id;
+$sql = "SELECT * FROM users WHERE id = " . $user_id;
 $user = fetch_data($connect, $sql);
 
-$sql = "SELECT * FROM projects WHERE user_id = " . $safe_id;
+$sql = "SELECT * FROM projects WHERE user_id = " . $user_id;
 $projects = fetch_data($connect, $sql);
 
 $page_content = include_template('add.php', [
