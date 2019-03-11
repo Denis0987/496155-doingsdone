@@ -1,7 +1,6 @@
 <?php
  require_once('init.php');
 require_once('functions.php');
-require_once('index.php');
  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $project = $_POST;
      if (empty($project['name'])) {
