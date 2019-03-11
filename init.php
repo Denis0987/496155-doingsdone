@@ -1,5 +1,4 @@
 <?php
-require_once('functions.php');
 session_start();
 $user_id = $_SESSION['user']['id'];
 $error_sql = 'Невозможно подключиться к базе данных: ' . mysqli_connect_error();

@@ -1,7 +1,7 @@
 <?php
 require_once('init.php');
 require_once('functions.php');
-require_once('index.php');
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $form = $_POST;
     $required = ['email', 'password'];
